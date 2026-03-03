@@ -1,0 +1,6 @@
+{
+    "shell_cmd": "g++ main.cpp -o a.out -O2 -std=c++17 -Wall -Wextra -D_GLIBCXX_DEBUG && { time (ulimit -v 524288; ulimit -t 2; ./a.out < input.txt > temp_out.txt); } 2>&1; RET=$?; if [ $RET -eq 0 ]; then mv temp_out.txt output.txt; elif [ $RET -eq 139 ]; then rm -f temp_out.txt; echo \"\n[Signal: SIGSEGV (Segfault)]\"; elif [ $RET -eq 134 ]; then rm -f temp_out.txt; echo \"\n[Signal: SIGABRT (Out of Bounds / Assertion Failed)]\"; elif [ $RET -eq 136 ]; then rm -f temp_out.txt; echo \"\n[Signal: SIGFPE (Div by Zero)]\"; elif [ $RET -eq 143 ]; then rm -f temp_out.txt; echo \"\n[Signal: SIGTERM (Terminated)]\"; elif [ $RET -eq 152 ] || [ $RET -eq 137 ]; then rm -f temp_out.txt; echo \"\n[Signal: SIGXCPU (TLE Radix!!)]\"; else rm -f temp_out.txt; echo \"\n[Finished with exit code $RET]\"; fi",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "/home/radix/Desktop/NVM",
+    "selector": "source.c++"
+}
